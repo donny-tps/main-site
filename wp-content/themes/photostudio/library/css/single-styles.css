@@ -1,0 +1,87 @@
+/*.related-posts::after {*/
+    /*content: '';*/
+    /*display: table;*/
+    /*position: relative;*/
+    /*clear: both;*/
+/*}*/
+.blogpost-items {
+    width: 100%;
+}
+.blogpost-item {
+    width: 32%;
+}
+.related-posts
+.blogpost-item {
+    min-height: 120px;
+}
+.blogpost-item > a,
+.blogpost-item .img-container {
+    width: 100%;
+}
+
+.blogpost-item .img-container {
+    overflow: hidden;
+    height: auto;
+    /*height: 250px;*/
+    position: relative;
+    text-align: center;   
+}
+
+.blogpost-item img {
+    width: 100%;
+   /* max-width: unset; */
+	/* commented out by Arpan. Image was overflowing. */
+} 
+
+.blogpost-item .post-content {
+    padding: 0 20px;
+}
+.related-posts {
+    display: flex;
+    flex-wrap: wrap;
+    /*align-items: flex-end;*/
+    align-items: flex-start;
+}
+.related-posts h3 {
+    width: 100%;
+}
+@media only screen and (max-width: 992px) {
+    .blogpost-item {
+        width: 48% !important;
+    }
+
+    .blogpost-item .img-container {
+        /*height: 300px; */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .blogpost-item {
+        width: 98% !important;
+    }
+
+    .blogpost-item .img-container {
+        /*height: 350px; */
+        height: auto;
+    }
+    .blogpost-item img {
+        width: 100%;
+    }
+}
+.related-posts_footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+}
+a.related-posts_magazine-link {
+    display: inline-block;
+    padding: 10px 25px;
+    border-radius: 5px;
+    transition: .3s;
+    background-color: #880015;
+    color: #fff;
+}
+a.related-posts_magazine-link:hover {
+    text-decoration: none;
+    background-color: #b90521;
+}

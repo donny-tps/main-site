@@ -1,0 +1,85 @@
+@media only screen and (max-width: 1290px) {
+
+	.carousel-holder .content-holder{
+		padding: 17px;
+		bottom: -77px;
+	}
+	#gform_wrapper_11{
+	  .col-third{
+	  	width: 50%;
+	  }
+	  .gform_footer{
+	  	width: 50%;
+	  	padding: 28px 15px 0 0;
+	  	text-align: right;
+	  }
+	 }
+} // end of media query 1290px
+
+
+@media only screen and (max-width: 940px) {
+
+	.col-two{
+		width: 100%;
+	}
+	.content-holder{
+		text-align: center;
+		.button-area{
+			float: none;
+			margin-top: 15px;
+		}
+	}
+	.carousel-holder {
+		height: 70%;
+		.content-holder{
+			bottom: -139px;
+		}	
+	}
+} // end of media query 940px
+
+@media only screen and (max-width: 860px){
+	
+	.col-fifth {
+		width:100%;
+		float:none;
+	}
+
+}
+
+@media only screen and (max-width: 720px){
+	#gform_wrapper_11{
+	  .col-third, .col-50 {
+	  	width: 100%;
+	  }
+	  .gform_footer{
+	  	width: 100%;
+	  	padding: 0;
+	  	text-align: left;
+	  }
+ 	}
+}
+@media only screen and (max-width: 540px) {
+	.carousel-holder {
+		.content-holder{
+			bottom: 0;
+		}	
+	}
+	#gform_4{
+		.two-sections, .address_city, .address_state, .address_zip, .address_country, .ginput_cardinfo_left, .ginput_cardinfo_right, select#input_4_6_2_month, select#input_4_6_2_year{
+			width: 100%;
+		}
+	}
+}
+//540px
+@media only screen and (max-width: 450px) {
+	.content-holder .but1, .content-holder .but1-a, .content-holder .but1-b {
+    padding: 12px 5px;
+}
+.content-holder h2{
+	font-size: 17px;
+}
+.carousel-holder .content-holder {
+    bottom: -77px;
+}
+}
+//400px

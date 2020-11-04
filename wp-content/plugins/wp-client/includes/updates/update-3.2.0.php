@@ -1,0 +1,2 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) { exit; } include_once $this->plugin_dir . 'includes/class.old_update.php'; $wpc_client_old_update = new WPC_Client_Old_Update(); $wpc_client_old_update->updating( $ver );

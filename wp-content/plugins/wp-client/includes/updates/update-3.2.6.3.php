@@ -1,0 +1,2 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) { exit; } $show_link = get_option( 'wpc_show_link' ); $link_text = get_option( 'wpc_link_text' ); if ( !empty( $show_link ) && 'yes' == $show_link ) { $wpc_general = $this->cc_get_settings( 'general' ); $wpc_general['show_hub_link'] = 'yes'; if ( !empty( $link_text ) ) { $wpc_general['show_hub_link'] = $link_text; } do_action( 'wp_client_settings_update', $wpc_general, 'general' ); }

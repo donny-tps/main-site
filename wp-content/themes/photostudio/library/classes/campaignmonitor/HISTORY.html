@@ -1,0 +1,270 @@
+<h1 id="createsend-php-history">createsend-php history</h1>
+<h2 id="v5-0-1-14-december-2015">v5.0.1 - 14 December, 2015</h2>
+<ul>
+<li>Changed the fatal error thrown when unable to communicate with the API into a catchable Exception</li>
+</ul>
+<h2 id="v5-0-0-8-december-2015">v5.0.0 - 8 December, 2015</h2>
+<ul>
+<li>Added PHP7 support</li>
+</ul>
+<h2 id="v4-1-1-9-september-2015">v4.1.1 - 9 September, 2015</h2>
+<ul>
+<li>Fixed the transactional smart email call for get_list() so it now passes the client id</li>
+</ul>
+<h2 id="v4-1-0-5-august-2014">v4.1.0 - 5 August, 2014</h2>
+<ul>
+<li>Added support for Transactional Email</li>
+</ul>
+<h2 id="v4-0-2-29-october-2014">v4.0.2 - 29 October, 2014</h2>
+<ul>
+<li>Updated constant definitions so PHP Notices aren&#39;t raised</li>
+</ul>
+<h2 id="v4-0-1-30-may-2014">v4.0.1 - 30 May, 2014</h2>
+<ul>
+<li>Updated the class_exists check to no longer call __autoload</li>
+</ul>
+<h2 id="v4-0-0-6-feb-2014">v4.0.0 - 6 Feb, 2014</h2>
+<ul>
+<li>Updated to v3.1 API</li>
+<li><p>Added support for new segments structure</p>
+<ul>
+<li><p>Segment now includes a new <code>RuleGroups</code> member, instead of a <code>Rules</code> member.</p>
+<pre><code>So for example, when you _previously_ would have created a segment like so:
+
+```php
+$result = $wrap-&gt;create(&#39;Segments List ID&#39;, array(
+    &#39;Title&#39; =&gt; &#39;Segment Title&#39;,
+    &#39;Rules&#39; =&gt; array(
+        array(
+            &#39;Subject&#39; =&gt; &#39;EmailAddress&#39;,
+            &#39;Clauses&#39; =&gt; array(
+                &#39;CONTAINS example.com&#39;
+            )
+        ) ,
+        array(
+            &#39;Subject&#39; =&gt; &#39;[customfield]&#39;,
+            &#39;Clauses&#39; =&gt; array(
+                &#39;PROVIDED&#39;,
+                &#39;EQUALS 1&#39;
+            )
+        )
+    )
+));
+```
+
+You would _now_ do this:
+
+```php
+$result = $wrap-&gt;create(&#39;Segments List ID&#39;, array(
+    &#39;Title&#39; =&gt; &#39;Segment Title&#39;,
+    &#39;RuleGroups&#39; =&gt; array(
+        array(
+            &#39;Rules&#39; =&gt; array(
+                array(
+                    &#39;RuleType&#39; =&gt; &#39;EmailAddress&#39;,
+                    &#39;Clause&#39; =&gt; &#39;CONTAINS example.com&#39;
+                )
+            )
+        ) ,
+        array(
+            &#39;Rules&#39; =&gt; array(
+                array(
+                    &#39;RuleType&#39; =&gt; &#39;[customfield]&#39;,
+                    &#39;Clause&#39; =&gt; &#39;PROVIDED&#39;
+                ) ,
+                array(
+                    &#39;RuleType&#39; =&gt; &#39;[customfield]&#39;,
+                    &#39;Clause&#39; =&gt; &#39;EQUALS 1&#39;
+                )
+            )
+        )
+    )
+));
+</code></pre><p>```</p>
+</li>
+<li><p>The Add Rule call is now Add Rule Group, taking a <code>ruleGroup</code> argument instead of a <code>rule</code> argument.</p>
+<pre><code class="lang-php">function CS_REST_Segments-&gt;add_rulegroup($rulegroup)
+</code></pre>
+<p>So for example, when you <em>previously</em> would have added a rule like so:</p>
+<pre><code class="lang-php">$wrap = new CS_REST_Segments(&#39;Segment ID&#39;, $auth);
+$result = $wrap-&gt;add_rule(array(
+    &#39;Subject&#39; =&gt; &#39;EmailAddress&#39;,
+    &#39;Clauses&#39; =&gt; array(&#39;CONTAINS example.com&#39;)
+));
+</code></pre>
+<p>You would <em>now</em> do this:</p>
+<pre><code class="lang-php">$wrap = new CS_REST_Segments(&#39;Segment ID&#39;, $auth);
+$result = $wrap-&gt;add_rulegroup(array(
+    &#39;Rules&#39; =&gt; array(
+        array(
+            &#39;RuleType&#39; =&gt; &#39;EmailAddress&#39;,
+            &#39;Clause&#39; =&gt; &#39;CONTAINS example.com&#39;
+        )
+    )
+));
+</code></pre>
+</li>
+</ul>
+</li>
+<li>Removed the get_apikey method to promote usage of oAuth authentication</li>
+</ul>
+<h2 id="v3-1-3-10-dec-2013">v3.1.3 - 10 Dec, 2013</h2>
+<ul>
+<li>Fixed a notice that was raised when unscheduling a campaign.</li>
+</ul>
+<h2 id="v3-1-2-28-oct-2013">v3.1.2 - 28 Oct, 2013</h2>
+<ul>
+<li>Only set the <code>CURLOPT_CAINFO</code> option if not already set globally via the ini system.</li>
+</ul>
+<h2 id="v3-1-1-3-oct-2013">v3.1.1 - 3 Oct, 2013</h2>
+<ul>
+<li>Made it harder to accidentally email your subscribers when using the example code</li>
+</ul>
+<h2 id="v3-1-0-15-apr-2013">v3.1.0 - 15 Apr, 2013</h2>
+<ul>
+<li>Added support for <a href="http://www.campaignmonitor.com/api/account/#single_sign_on">single sign on</a> which allows initiation of external login sessions to Campaign Monitor.</li>
+</ul>
+<h2 id="v3-0-0-25-mar-2013">v3.0.0 - 25 Mar, 2013</h2>
+<ul>
+<li><p>Added support for authenticating using OAuth. See the <a href="README.md#authenticating">README</a> for full usage instructions.</p>
+<ul>
+<li><p>This introduces some changes to how you authenticate using this library. You now authenticate by passing an <code>$auth</code> array as the first argument when creating instances of any classes which inherit from the <code>CS_REST_Wrapper_Base</code> class.</p>
+<p>  So in existing code, when you <em>previously</em> would have authenticated using an API key as follows:</p>
+<pre><code class="lang-php">  $wrap = new CS_REST_General(&#39;Your API Key&#39;);
+  $result = $wrap-&gt;get_clients();
+</code></pre>
+<p>  If you want to authenticate using an API key, you should <em>now</em> do this:</p>
+<pre><code class="lang-php">  $wrap = new CS_REST_General(array(&#39;api_key&#39; =&gt; &#39;Your API Key&#39;));
+  $result = $wrap-&gt;get_clients();
+</code></pre>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="v2-5-2-19-dec-2012">v2.5.2 - 19 Dec, 2012</h2>
+<ul>
+<li>Removed simpletest source files, and added simpletest as a dev dependency.</li>
+<li>Fixed autoloading with composer, so that only necessary classes are loaded.</li>
+</ul>
+<h2 id="v2-5-1-14-dec-2012">v2.5.1 - 14 Dec, 2012</h2>
+<ul>
+<li>Use CURLOPT_TIMEOUT and CURLOPT_CONNECTTIMEOUT constants instead of
+CURLOPT_TIMEOUT_MS and CURLOPT_CONNECTTIMEOUT_MS.</li>
+<li>Added autoloading support when using Composer (PHP dependency management).</li>
+</ul>
+<h2 id="v2-5-0-11-dec-2012">v2.5.0 - 11 Dec, 2012</h2>
+<ul>
+<li>Added support for including from name, from email, and reply to email in
+drafts, scheduled, and sent campaigns.</li>
+<li>Added support for campaign text version urls.</li>
+<li>Added support for transferring credits to/from a client.</li>
+<li>Added support for getting account billing details as well as client credits.</li>
+<li>Made all date fields optional when getting paged results.</li>
+</ul>
+<h2 id="v2-4-0-5-nov-2012">v2.4.0 - 5 Nov, 2012</h2>
+<ul>
+<li>Added CS_REST_Campaigns.get_email_client_usage().</li>
+<li>Added support for ReadsEmailWith field on subscriber objects.</li>
+<li>Added support for retrieving unconfirmed subscribers for a list.</li>
+<li>Added support for suppressing email addresses.</li>
+<li>Added support for retrieving spam complaints for a campaign, as well as
+adding SpamComplaints field to campaign summary output.</li>
+<li>Added VisibleInPreferenceCenter field to custom field output.</li>
+<li>Added support for setting preference center visibility when creating custom
+fields.</li>
+<li>Added the ability to update a custom field name and preference visibility.</li>
+<li>Added documentation explaining that TextUrl is now optional when creating a
+campaign.</li>
+</ul>
+<h2 id="v2-3-2-23-oct-2012">v2.3.2 - 23 Oct, 2012</h2>
+<ul>
+<li>Fixed timeout issue by setting CS_REST_SOCKET_TIMEOUT to 10 seconds.</li>
+</ul>
+<h2 id="v2-3-1-19-oct-2012">v2.3.1 - 19 Oct, 2012</h2>
+<ul>
+<li>Fixed #13. Load services_json.php only if Services_JSON class doesn&#39;t already
+exist.</li>
+<li>Fixed issue with curl calls hangs hanging on proxy failure.</li>
+</ul>
+<h2 id="v2-3-0-10-oct-2012">v2.3.0 - 10 Oct, 2012</h2>
+<ul>
+<li>Added support for creating campaigns from templates.</li>
+<li>Added support for unsuppressing an email address.</li>
+</ul>
+<h2 id="1-1-3-26-sep-2012">1.1.3 - 26 Sep, 2012</h2>
+<ul>
+<li>Backported fix to use Mozilla certificate bundle, as per
+<a href="http://curl.haxx.se/docs/caextract.html">http://curl.haxx.se/docs/caextract.html</a></li>
+</ul>
+<h2 id="v2-2-0-17-sep-2012">v2.2.0 - 17 Sep, 2012</h2>
+<ul>
+<li>Added WorldviewURL field to campaign summary response.</li>
+<li>Added Latitude, Longitude, City, Region, CountryCode, and CountryName
+fields to campaign opens and clicks responses.</li>
+</ul>
+<h2 id="2-1-1-11-sep-2012">2.1.1 - 11 Sep, 2012</h2>
+<ul>
+<li>Added &#39;Contributing&#39; section to README.</li>
+<li>Used the Mozilla certificate bundle, as per
+<a href="http://curl.haxx.se/docs/caextract.html">http://curl.haxx.se/docs/caextract.html</a></li>
+<li>Bumping to 2.1.1</li>
+</ul>
+<h2 id="v2-1-0-30-aug-2012">v2.1.0 - 30 Aug, 2012</h2>
+<ul>
+<li>Added support for basic / unlimited pricing.</li>
+</ul>
+<h2 id="v2-0-0-23-aug-2012">v2.0.0 - 23 Aug, 2012</h2>
+<ul>
+<li>Removing deprecated method CS_REST_Clients.set_access().</li>
+<li>Removed traces of calling the API in a deprecated manner.</li>
+</ul>
+<h2 id="v1-2-0-22-aug-2012">v1.2.0 - 22 Aug, 2012</h2>
+<ul>
+<li>Added support for UnsubscribeSetting field when creating, updating and
+getting list details.</li>
+<li>Added support for AddUnsubscribesToSuppList and ScrubActiveWithSuppList
+fields when updating a list.</li>
+<li>Added support for finding all client lists to which a subscriber with a
+specific email address belongs.</li>
+</ul>
+<h2 id="v1-1-2-23-jul-2012">v1.1.2 - 23 Jul, 2012</h2>
+<ul>
+<li>Added support for specifying whether subscription-based autoresponders
+should be restarted when adding or updating subscribers.</li>
+</ul>
+<h2 id="v1-1-1-16-jul-2012">v1.1.1 - 16 Jul, 2012</h2>
+<ul>
+<li>Added Travis CI support.</li>
+</ul>
+<h2 id="v1-1-0-11-jul-2012">v1.1.0 - 11 Jul, 2012</h2>
+<ul>
+<li>Added support for team management.</li>
+</ul>
+<h2 id="1-0-14-18-mar-2012">1.0.14 - 18 Mar, 2012</h2>
+<ul>
+<li>Added support for new API methods.</li>
+<li>Fixed subscriber import sample.</li>
+</ul>
+<h2 id="1-0-12-12-sep-2011">1.0.12 - 12 Sep, 2011</h2>
+<ul>
+<li>Fixed response handling code so that it can deal with HTTP responses
+beginning with &quot;HTTP/1.1 Continue&quot;.</li>
+</ul>
+<h2 id="1-0-11-25-aug-2011">1.0.11 - 25 Aug, 2011</h2>
+<ul>
+<li>Fixed socket issue by added Connection:Close header for raw socket
+transport.</li>
+</ul>
+<h2 id="1-0-10-12-jul-2011">1.0.10 - 12 Jul, 2011</h2>
+<ul>
+<li>Fixed #5. Updated recursive check_encoding call.</li>
+<li>Fixed #7. Modified template create/update to not require screenshot URL.</li>
+</ul>
+<h2 id="1-0-9-18-jun-2011">1.0.9 - 18 Jun, 2011</h2>
+<ul>
+<li>Fixed #4. Removed static function calls.</li>
+</ul>
+<h2 id="1-0-8-6-jun-2011">1.0.8 - 6 Jun, 2011</h2>
+<ul>
+<li>Initial release which supports current Campaign Monitor API.</li>
+</ul>

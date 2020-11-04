@@ -1,0 +1,28 @@
+<h1 id="releasing-createsend-php">Releasing createsend-php</h1>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>You must have <a href="https://getcomposer.org/">Composer</a> installed.</li>
+</ul>
+<h2 id="prepare-the-release">Prepare the release</h2>
+<ul>
+<li>Increment the <code>CS_REST_WRAPPER_VERSION</code> constant in the <code>class/base_classes.php</code> file, ensuring that you use <a href="http://semver.org/">Semantic Versioning</a>.</li>
+<li>Add an entry to <code>HISTORY.md</code> which clearly explains the new release.</li>
+<li><p>Install development dependencies and ensure that tests pass locally:</p>
+<pre><code>composer install --dev
+cd tests &amp;&amp; php all_tests.php &amp;&amp; cd ..
+</code></pre></li>
+<li><p>Commit your changes:</p>
+<pre><code>git commit -am &quot;Version X.Y.Z&quot;
+</code></pre></li>
+<li><p>Tag the new version:</p>
+<pre><code>git tag -a vX.Y.Z -m &quot;Version X.Y.Z&quot;
+</code></pre></li>
+<li><p>Push your changes to GitHub, including the tag you just created:</p>
+<pre><code>git push origin master --tags
+</code></pre></li>
+<li><p>Ensure that all <a href="https://travis-ci.org/campaignmonitor/createsend-php">tests</a> pass.</p>
+</li>
+</ul>
+<h2 id="release-the-module">Release the module</h2>
+<p>There is a <a href="https://github.com/campaignmonitor/createsend-php/settings/hooks">GitHub service hook</a> for the <a href="https://packagist.org/">Packagist</a> PHP package repository, which is configured to update the <a href="https://packagist.org/packages/campaignmonitor/createsend-php">createsend-php</a> package when new tags are pushed to GitHub.</p>
+<p>So there are no further steps to releasing the module. You should now see the latest version of the module listed on <a href="https://packagist.org/packages/campaignmonitor/createsend-php">Packagist</a>. All done!</p>
