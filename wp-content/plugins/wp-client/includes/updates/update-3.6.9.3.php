@@ -1,2 +1,0 @@
-<?php
-if ( ! defined( 'ABSPATH' ) ) { exit; } $wpc_gateways = $this->cc_get_settings( 'gateways' ); if ( isset( $wpc_gateways['paypal-express'] ) && !isset( $wpc_gateways['paypal-express']['allow_recurring'] ) ) { $wpc_gateways['paypal-express']['allow_recurring'] = 1; do_action( 'wp_client_settings_update', $wpc_gateways, 'gateways' ); }

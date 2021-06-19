@@ -1,2 +1,0 @@
-<?php
-if ( ! defined( 'ABSPATH' ) ) { exit; } $wpc_clients_staff = $this->cc_get_settings( 'clients_staff' ); if( isset( $wpc_clients_staff['registration_using_terms'] ) && $wpc_clients_staff['registration_using_terms'] == 'yes' ) { $wpc_clients_staff['using_terms'] = 'yes'; $wpc_clients_staff['using_terms_form'] = array('registration'); } else { $wpc_clients_staff['using_terms'] = 'no'; } do_action( 'wp_client_settings_update', $wpc_clients_staff, 'clients_staff' );

@@ -1,2 +1,0 @@
-<?php
-if ( ! defined( 'ABSPATH' ) ) exit; $this->_create_post_type(); global $wp_roles; $capability_map = array_merge( array_values( $this->get_map_caps( 'clientspage' ) ), array_values( $this->get_map_caps( 'portalhub' ) ) ); foreach ( $capability_map as $capability ) { $wp_roles->add_cap( 'administrator', $capability ); $wp_roles->add_cap( 'wpc_admin', $capability ); $wp_roles->add_cap( 'wpc_manager', $capability ); } $this->reset_rewrite_rules();
